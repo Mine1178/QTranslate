@@ -109,7 +109,11 @@ dotnet publish STranslate/STranslate.csproj -c Release -r win-x64 --self-contain
 
 如果 QTranslate 帮到了你，可以请作者喝杯咖啡 ☕
 
-在软件「关于」页面点击「☕ 赞助作者」查看二维码。
+| 微信 | 支付宝 |
+| :--: | :--: |
+| <img src="./images/wechatpay.jpg" width="180" /> | <img src="./images/alipay.jpg" width="180" /> |
+
+你的支持是持续开发的动力 ❤️
 
 ---
 

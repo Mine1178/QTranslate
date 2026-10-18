@@ -36,6 +36,11 @@
 
 首次运行若缺少运行时，程序会自动弹窗引导通过 winget 安装。
 
+## 📖 使用手册
+
+- [在线阅读（Markdown）](./docs/QTranslate-使用手册.md)
+- [PDF 下载](./docs/QTranslate-使用手册.pdf)
+
 ## 🛠 从源码构建
 
 前置要求：.NET 10 SDK

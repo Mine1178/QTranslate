@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Mine1178/QTranslate/main/src/STranslate/Resources/app.ico" width="100" height="100" alt="QTranslate"/>
+<img src="https://raw.githubusercontent.com/Mine1178/QTranslate/main/src/STranslate/Resources/app.png" width="120" height="120" alt="QTranslate" style="border-radius: 24px; box-shadow: 0 8px 24px rgba(100, 80, 220, 0.3);"/>
 
 # QTranslate
 
@@ -8,8 +8,9 @@
 
 [![Platform](https://img.shields.io/badge/Windows-x64-0078D4?logo=windows&logoColor=white)]()
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)]()
+[![WPF](https://img.shields.io/badge/UI-WPF%20%2B%20Modern-8A2BE2)]()
 [![License](https://img.shields.io/badge/License-MIT-green.svg)]()
-[![Release](https://img.shields.io/badge/release-v1.0.1-orange)]()
+[![Release](https://img.shields.io/badge/release-v1.0.2-orange)]()
 
 <p align="center">
   划词即译 · 秒速启动 · 内存仅 50MB
@@ -25,7 +26,7 @@
 |---|---|---|
 | 🚀 **启动速度** | 秒开，无等待 | 3-5 秒启动 |
 | 💾 **内存占用** | ~50 MB | 200-500 MB |
-| 📦 **安装包** | ~18 MB | 100+ MB |
+| 📦 **安装包** | ~20 MB | 100+ MB |
 | 🎯 **专注度** | 只做翻译，不臃肿 | 塞满用不上的功能 |
 | 🎨 **界面** | 现代 Fluent 设计 | 老旧 Windows 风格 |
 

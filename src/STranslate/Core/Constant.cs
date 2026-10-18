@@ -29,13 +29,13 @@ public class Constant
     public const string InfoFileName = ".INFO";
     public const string BackupFileName = ".BACKUP";
 
-    public const string Github = "https://github.com/your-username";
-    public const string Sponsor = "https://github.com/your-username";
+    public const string Github = "https://github.com/Mine1178/QTranslate";
+    public const string Sponsor = "https://github.com/Mine1178/QTranslate";
     public const string Dev = "Dev";
     public static readonly string Version = FileVersionInfo.GetVersionInfo(Environment.ProcessPath ?? Assembly.GetExecutingAssembly().Location).ProductVersion.NonNull();
 
     public static readonly Uri GithubUri = new(Github);
-    public static readonly Uri ReportUri = new("https://github.com/your-username/QTranslate/issues/new");
+    public static readonly Uri ReportUri = new("https://github.com/Mine1178/QTranslate/issues/new");
     public static readonly Uri STranslateUri = new("https://github.com/STranslate/STranslate");
     public static readonly Uri WebsiteUri = new("https://stranslate.zggsong.com");
     public static readonly Uri GroupUri = new("https://t.me/stranslatewpf");

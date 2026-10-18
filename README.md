@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/your-username/QTranslate/main/src/STranslate/Resources/app.ico" width="100" height="100" alt="QTranslate"/>
+<img src="https://raw.githubusercontent.com/Mine1178/QTranslate/main/src/STranslate/Resources/app.ico" width="100" height="100" alt="QTranslate"/>
 
 # QTranslate
 
@@ -51,7 +51,7 @@
 
 ### 下载
 
-前往 [Releases](https://github.com/your-username/QTranslate/releases) 下载：
+前往 [Releases](https://github.com/Mine1178/QTranslate/releases) 下载：
 
 | 版本 | 适用场景 |
 |---|---|
@@ -90,7 +90,7 @@
 ## 🛠 从源码构建
 
 ```bash
-git clone https://github.com/your-username/QTranslate.git
+git clone https://github.com/Mine1178/QTranslate.git
 cd QTranslate/src
 dotnet build STranslate/STranslate.csproj -c Release
 ```

@@ -30,7 +30,7 @@
     ui:WindowHelper.SystemBackdropType="Mica"
     ui:WindowHelper.UseModernWindowStyle="True"
     Closed="OnClosed"
-    Icon="/Resources/app.ico"
+    Icon="/Resources/app.png"
     Left="{Binding Settings.MainWindowLeft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     Loaded="OnLoaded"
     ShowInTaskbar="False"

@@ -122,12 +122,6 @@
                     </ui:NavigationViewItem.MenuItems>
                 </ui:NavigationViewItem>
 
-                <ui:NavigationViewItem Content="{DynamicResource Standalone}" Tag="StandalonePage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:BitmapIcon ShowAsMonochrome="False" UriSource="/Resources/windows.png" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-
                 <ui:NavigationViewItem Content="{DynamicResource History}" Tag="HistoryPage">
                     <ui:NavigationViewItem.Icon>
                         <ui:BitmapIcon ShowAsMonochrome="False" UriSource="/Resources/history.png" />

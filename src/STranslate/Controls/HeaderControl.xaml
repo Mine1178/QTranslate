@@ -69,24 +69,6 @@
                                                 Type="Toggle"
                                                 Visibility="Collapsed" />
                                             <control:IconButton
-                                                x:Name="OcrButton"
-                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type control:HeaderControl}}, Path=OcrCommand}"
-                                                Icon="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}"
-                                                ToolTip="{DynamicResource Ocr}"
-                                                Visibility="Collapsed" />
-                                            <control:IconButton
-                                                x:Name="ImageTranslateButton"
-                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type control:HeaderControl}}, Path=ImageTranslateCommand}"
-                                                Icon="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}"
-                                                ToolTip="{DynamicResource General_ImageTranslate}"
-                                                Visibility="Collapsed" />
-                                            <control:IconButton
-                                                x:Name="ScreenshotTranslateButton"
-                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type control:HeaderControl}}, Path=ScreenshotTranslateCommand}"
-                                                Icon="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}"
-                                                ToolTip="{DynamicResource General_ScreenshotTranslate}"
-                                                Visibility="Collapsed" />
-                                            <control:IconButton
                                                 x:Name="MouseSelectionTranslationButton"
                                                 Icon="{x:Static ui:FluentSystemIcons.KeyboardMouse_16_Regular}"
                                                 IsOn="{Binding RelativeSource={RelativeSource AncestorType={x:Type control:HeaderControl}}, Path=IsMouseSelectionTranslationEnabled}"
@@ -250,15 +232,6 @@
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.AutoTranslate}">
                                                 <Setter TargetName="AutoTranslateButton" Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.Ocr}">
-                                                <Setter TargetName="OcrButton" Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.ImageTranslate}">
-                                                <Setter TargetName="ImageTranslateButton" Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.ScreenshotTranslate}">
-                                                <Setter TargetName="ScreenshotTranslateButton" Property="Visibility" Value="Visible" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.MouseSelectionTranslation}">
                                                 <Setter TargetName="MouseSelectionTranslationButton" Property="Visibility" Value="Visible" />

@@ -379,34 +379,6 @@
                             OffContent="{DynamicResource Disable}"
                             OnContent="{DynamicResource Enable}" />
                     </ui:SettingsCard>
-                    <ui:SettingsCard Description="{DynamicResource General_CopyAfterOcrDescription}" Header="{DynamicResource General_CopyAfterOcr}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.CropInterim_20_Filled}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <ui:ToggleSwitch
-                            IsOn="{Binding Settings.CopyAfterOcr}"
-                            OffContent="{DynamicResource Disable}"
-                            OnContent="{DynamicResource Enable}" />
-                    </ui:SettingsCard>
-                    <ui:SettingsCard Description="{DynamicResource General_ScreenshotOcrLanguageDescription}" Header="{DynamicResource General_ScreenshotOcrLanguageHeader}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <ComboBox
-                            DisplayMemberPath="Display"
-                            ItemsSource="{Binding DataProvider.LangEnums}"
-                            SelectedValue="{Binding Settings.ScreenshotOcrLanguage}"
-                            SelectedValuePath="Value" />
-                    </ui:SettingsCard>
-                    <ui:SettingsCard Description="{DynamicResource General_FocusInputAfterScreenshotTranslateDescription}" Header="{DynamicResource General_FocusInputAfterScreenshotTranslate}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.CursorHover_20_Regular}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <ui:ToggleSwitch
-                            IsOn="{Binding Settings.FocusInputAfterScreenshotTranslate}"
-                            OffContent="{DynamicResource Disable}"
-                            OnContent="{DynamicResource Enable}" />
-                    </ui:SettingsCard>
                 </control:CardGroup>
 
                 <ui:SettingsExpander Description="{DynamicResource General_AutoTranslateDescription}" Header="{DynamicResource General_AutoTranslate}">
@@ -464,47 +436,6 @@
                                 OnContent="{DynamicResource Enable}" />
                         </ui:SettingsCard>
 
-                        <ui:SettingsCard Header="{DynamicResource General_ImageTranslateOnOcrServiceChanged}">
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ImageTranslateOnOcrServiceChanged}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Header="{DynamicResource General_ImageTranslateOnTranslateServiceChanged}">
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ImageTranslateOnTranslateServiceChanged}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Header="{DynamicResource General_ImageTranslateOnLanguageChanged}">
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ImageTranslateOnLanguageChanged}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Header="{DynamicResource General_ImageTranslateOnLayoutChanged}">
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ImageTranslateOnLayoutChanged}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Header="{DynamicResource General_OcrOnServiceChanged}">
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.OcrOnServiceChanged}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Header="{DynamicResource General_OcrOnLanguageChanged}">
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.OcrOnLanguageChanged}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
                     </ui:SettingsExpander.Items>
                 </ui:SettingsExpander>
 
@@ -565,24 +496,6 @@
                             </ui:SettingsCard.HeaderIcon>
                             <ui:ToggleSwitch
                                 IsOn="{Binding IsTextSeparatorClipboardMonitorScopeEnabled, Mode=TwoWay}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-                        <ui:SettingsCard Header="{DynamicResource TextSeparatorHandleScopeScreenshotTranslate}">
-                            <ui:SettingsCard.HeaderIcon>
-                                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}" />
-                            </ui:SettingsCard.HeaderIcon>
-                            <ui:ToggleSwitch
-                                IsOn="{Binding IsTextSeparatorScreenshotTranslateScopeEnabled, Mode=TwoWay}"
-                                OffContent="{DynamicResource Disable}"
-                                OnContent="{DynamicResource Enable}" />
-                        </ui:SettingsCard>
-                        <ui:SettingsCard Header="{DynamicResource TextSeparatorHandleScopeSilentOcr}">
-                            <ui:SettingsCard.HeaderIcon>
-                                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}" />
-                            </ui:SettingsCard.HeaderIcon>
-                            <ui:ToggleSwitch
-                                IsOn="{Binding IsTextSeparatorSilentOcrScopeEnabled, Mode=TwoWay}"
                                 OffContent="{DynamicResource Disable}"
                                 OnContent="{DynamicResource Enable}" />
                         </ui:SettingsCard>
@@ -825,33 +738,6 @@
                         OnContent="{DynamicResource Enable}" />
 
                     <ui:SettingsExpander.Items>
-                        <ui:SettingsCard Header="{DynamicResource General_ShowScreenshotItemInNotifyIconMenu}" IsEnabled="{Binding Settings.HideNotifyIcon, Converter={cnvt:BoolInverseConverter}}">
-                            <ui:SettingsCard.HeaderIcon>
-                                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}" />
-                            </ui:SettingsCard.HeaderIcon>
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ShowScreenshotItemInNotifyIconMenu}"
-                                OffContent="{DynamicResource Hide}"
-                                OnContent="{DynamicResource Show}" />
-                        </ui:SettingsCard>
-                        <ui:SettingsCard Header="{DynamicResource General_ShowImageTranslateItemInNotifyIconMenu}" IsEnabled="{Binding Settings.HideNotifyIcon, Converter={cnvt:BoolInverseConverter}}">
-                            <ui:SettingsCard.HeaderIcon>
-                                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}" />
-                            </ui:SettingsCard.HeaderIcon>
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ShowImageTranslateItemInNotifyIconMenu}"
-                                OffContent="{DynamicResource Hide}"
-                                OnContent="{DynamicResource Show}" />
-                        </ui:SettingsCard>
-                        <ui:SettingsCard Header="{DynamicResource General_ShowOcrItemInNotifyIconMenu}" IsEnabled="{Binding Settings.HideNotifyIcon, Converter={cnvt:BoolInverseConverter}}">
-                            <ui:SettingsCard.HeaderIcon>
-                                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}" />
-                            </ui:SettingsCard.HeaderIcon>
-                            <ui:ToggleSwitch
-                                IsOn="{Binding Settings.ShowOcrItemInNotifyIconMenu}"
-                                OffContent="{DynamicResource Hide}"
-                                OnContent="{DynamicResource Show}" />
-                        </ui:SettingsCard>
                         <ui:SettingsCard Header="{DynamicResource General_ShowQrCodeItemInNotifyIconMenu}" IsEnabled="{Binding Settings.HideNotifyIcon, Converter={cnvt:BoolInverseConverter}}">
                             <ui:SettingsCard.HeaderIcon>
                                 <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.QrCode_20_Regular}" />
@@ -981,16 +867,6 @@
                         </ListBox>
                     </ui:SettingsCard>
                 </control:CardGroup>
-
-                <ui:SettingsCard Description="{DynamicResource General_ShowScreenshotAuxiliaryLinesDescription}" Header="{DynamicResource General_ShowScreenshotAuxiliaryLines}">
-                    <ui:SettingsCard.HeaderIcon>
-                        <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.LineStyle_20_Regular}" />
-                    </ui:SettingsCard.HeaderIcon>
-                    <ui:ToggleSwitch
-                        IsOn="{Binding Settings.ShowScreenshotAuxiliaryLines}"
-                        OffContent="{DynamicResource Hide}"
-                        OnContent="{DynamicResource Show}" />
-                </ui:SettingsCard>
 
                 <control:CardGroup>
 

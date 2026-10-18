@@ -147,7 +147,7 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
         }
         catch (Exception e)
         {
-            ShowErrorMsgBoxAndFailFast("Cannot configure dependency injection container, please open new issue in STranslate", e);
+            ShowErrorMsgBoxAndFailFast("Cannot configure dependency injection container, please open new issue in QTranslate", e);
             return;
         }
 
@@ -174,7 +174,7 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
         }
         catch (Exception ex)
         {
-            ShowErrorMsgBoxAndFailFast("Cannot initialize settings, please open new issue in STranslate", ex);
+            ShowErrorMsgBoxAndFailFast("Cannot initialize settings, please open new issue in QTranslate", ex);
             return;
         }
     }

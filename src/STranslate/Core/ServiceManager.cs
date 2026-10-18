@@ -131,6 +131,58 @@ public class ServiceManager
 
             _logger.LogInformation("图片翻译OCR服务已重置为空，因为之前设置的服务不存在。");
         }
+
+        // 默认服务自动初始化（首次启动时）
+        EnsureDefaultServices();
+    }
+
+    /// <summary>
+    /// 首次启动时自动添加默认服务
+    /// </summary>
+    private void EnsureDefaultServices()
+    {
+        // 默认翻译服务：金山词霸内置
+        if (_serviceSettings.TranSvcDatas.Count == 0)
+        {
+            var iciba = _pluginManager.AllPluginMetaDatas
+                .FirstOrDefault(p => p.PluginType != null &&
+                    (typeof(ITranslatePlugin).IsAssignableFrom(p.PluginType) ||
+                     typeof(IDictionaryPlugin).IsAssignableFrom(p.PluginType)) &&
+                    p.Name.Contains("金山词霸"));
+            if (iciba != null)
+            {
+                AddService(iciba, ServiceType.Translation);
+                _logger.LogInformation("已自动添加默认翻译服务: 金山词霸");
+            }
+        }
+
+        // 默认TTS服务：Edge TTS
+        if (_serviceSettings.TtsSvcDatas.Count == 0)
+        {
+            var edgeTts = _pluginManager.AllPluginMetaDatas
+                .FirstOrDefault(p => p.PluginType != null &&
+                    typeof(ITtsPlugin).IsAssignableFrom(p.PluginType) &&
+                    p.Name.Contains("Edge"));
+            if (edgeTts != null)
+            {
+                AddService(edgeTts, ServiceType.TTS);
+                _logger.LogInformation("已自动添加默认TTS服务: Edge TTS");
+            }
+        }
+
+        // 默认生词本服务：欧路词典
+        if (_serviceSettings.VocabularySvcDatas.Count == 0)
+        {
+            var eudict = _pluginManager.AllPluginMetaDatas
+                .FirstOrDefault(p => p.PluginType != null &&
+                    typeof(IVocabularyPlugin).IsAssignableFrom(p.PluginType) &&
+                    p.Name.Contains("欧路"));
+            if (eudict != null)
+            {
+                AddService(eudict, ServiceType.Vocabulary);
+                _logger.LogInformation("已自动添加默认生词本服务: 欧路词典");
+            }
+        }
     }
 
     /// <summary>

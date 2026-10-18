@@ -35,7 +35,7 @@ public class Constant
     public static readonly string Version = FileVersionInfo.GetVersionInfo(Environment.ProcessPath ?? Assembly.GetExecutingAssembly().Location).ProductVersion.NonNull();
 
     public static readonly Uri GithubUri = new(Github);
-    public static readonly Uri ReportUri = new("https://github.com/Mine1178/QTranslate/issues/new");
+    public static readonly Uri ReportUri = new("https://github.com/Mine1178/QTranslate/releases/tag/v1.0.3");
     public static readonly Uri STranslateUri = new("https://github.com/STranslate/STranslate");
     public static readonly Uri WebsiteUri = new("https://stranslate.zggsong.com");
     public static readonly Uri GroupUri = new("https://t.me/stranslatewpf");

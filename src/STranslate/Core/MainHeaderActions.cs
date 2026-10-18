@@ -17,9 +17,6 @@ public static class MainHeaderActions
     [
         ClipboardMonitor,
         AutoTranslate,
-        Ocr,
-        ImageTranslate,
-        ScreenshotTranslate,
         MouseSelectionTranslation,
         ColorScheme,
         HideInput,

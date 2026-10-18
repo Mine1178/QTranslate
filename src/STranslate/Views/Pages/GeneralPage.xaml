@@ -85,18 +85,6 @@
                         <Setter TargetName="PreviewSingleIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.TranslateAuto_20_Regular}" />
                         <Setter TargetName="PreviewSingleButton" Property="ToolTip" Value="{DynamicResource General_AutoTranslate}" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.Ocr}">
-                        <Setter TargetName="PreviewSingleIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}" />
-                        <Setter TargetName="PreviewSingleButton" Property="ToolTip" Value="{DynamicResource Ocr}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.ImageTranslate}">
-                        <Setter TargetName="PreviewSingleIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}" />
-                        <Setter TargetName="PreviewSingleButton" Property="ToolTip" Value="{DynamicResource General_ShowImageTranslate}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.ScreenshotTranslate}">
-                        <Setter TargetName="PreviewSingleIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}" />
-                        <Setter TargetName="PreviewSingleButton" Property="ToolTip" Value="{DynamicResource General_ShowScreenshotTranslate}" />
-                    </DataTrigger>
                     <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.MouseSelectionTranslation}">
                         <Setter TargetName="PreviewSingleIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.KeyboardMouse_16_Regular}" />
                         <Setter TargetName="PreviewSingleButton" Property="ToolTip" Value="{DynamicResource General_ShowMouseSelectionTranslation}" />
@@ -145,18 +133,6 @@
                     <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.AutoTranslate}">
                         <Setter TargetName="PoolActionIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.TranslateAuto_20_Regular}" />
                         <Setter TargetName="PoolActionText" Property="Text" Value="{DynamicResource General_AutoTranslate}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.Ocr}">
-                        <Setter TargetName="PoolActionIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}" />
-                        <Setter TargetName="PoolActionText" Property="Text" Value="{DynamicResource Ocr}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.ImageTranslate}">
-                        <Setter TargetName="PoolActionIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}" />
-                        <Setter TargetName="PoolActionText" Property="Text" Value="{DynamicResource General_ShowImageTranslate}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.ScreenshotTranslate}">
-                        <Setter TargetName="PoolActionIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}" />
-                        <Setter TargetName="PoolActionText" Property="Text" Value="{DynamicResource General_ShowScreenshotTranslate}" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding}" Value="{x:Static core:MainHeaderActions.MouseSelectionTranslation}">
                         <Setter TargetName="PoolActionIcon" Property="Icon" Value="{x:Static ui:FluentSystemIcons.KeyboardMouse_16_Regular}" />
@@ -573,17 +549,6 @@
                             OnContent="{DynamicResource Enable}" />
                     </ui:SettingsCard>
                 </control:CardGroup>
-
-                <ui:SettingsCard Description="{DynamicResource General_ImageQualityDescription}" Header="{DynamicResource General_ImageQuality}">
-                    <ui:SettingsCard.HeaderIcon>
-                        <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ImageTable_20_Regular}" />
-                    </ui:SettingsCard.HeaderIcon>
-                    <ComboBox
-                        DisplayMemberPath="Display"
-                        ItemsSource="{Binding DataProvider.ImageQualities}"
-                        SelectedValue="{Binding Settings.ImageQuality}"
-                        SelectedValuePath="Value" />
-                </ui:SettingsCard>
 
                 <ui:SettingsCard Description="{DynamicResource General_DoubleClickTrayFunctionDescription}" Header="{DynamicResource General_DoubleClickTrayFunction}">
                     <ui:SettingsCard.HeaderIcon>

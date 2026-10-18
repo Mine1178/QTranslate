@@ -31,28 +31,6 @@
             <Border.ContextMenu>
                 <ContextMenu>
                     <MenuItem
-                        Command="{Binding Source={StaticResource PanelProxy}, Path=Data.ActiveImTranOcrCommand}"
-                        CommandParameter="{Binding Source={StaticResource SvcProxy}, Path=Data}"
-                        Header="{DynamicResource AsImTranOcrSvc}">
-                        <MenuItem.Visibility>
-                            <MultiBinding Converter="{cnvt:ImTranOcrEligibilityConverter}">
-                                <Binding Path="Data.ActiveImTranOcrCommand" Source="{StaticResource PanelProxy}" />
-                                <Binding Path="Data" Source="{StaticResource SvcProxy}" />
-                            </MultiBinding>
-                        </MenuItem.Visibility>
-                        <MenuItem.Icon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator>
-                        <Separator.Visibility>
-                            <MultiBinding Converter="{cnvt:ImTranOcrEligibilityConverter}">
-                                <Binding Path="Data.ActiveImTranOcrCommand" Source="{StaticResource PanelProxy}" />
-                                <Binding Path="Data" Source="{StaticResource SvcProxy}" />
-                            </MultiBinding>
-                        </Separator.Visibility>
-                    </Separator>
-                    <MenuItem
                         Command="{Binding Source={StaticResource NameEditorProxy}, Path=Data.BeginEditCommand}"
                         Header="{DynamicResource Rename}">
                         <MenuItem.Icon>
@@ -132,17 +110,6 @@
             </Trigger>
             <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
                 <Setter TargetName="SvcCard" Property="Background" Value="{DynamicResource {x:Static ui:ThemeKeys.SolidBackgroundFillColorSecondaryBrushKey}}" />
-            </DataTrigger>
-            <DataTrigger Value="True">
-                <DataTrigger.Binding>
-                    <MultiBinding Converter="{cnvt:StringEqualMultiConverter}">
-                        <Binding Path="ImTranOcrService.ServiceID" RelativeSource="{RelativeSource AncestorType=control:ServicePanel}" />
-                        <Binding Path="ServiceID" />
-                    </MultiBinding>
-                </DataTrigger.Binding>
-                <DataTrigger.Setters>
-                    <Setter TargetName="SvcCard" Property="BorderBrush" Value="{DynamicResource {x:Static ui:ThemeKeys.SystemFillColorSuccessBrushKey}}" />
-                </DataTrigger.Setters>
             </DataTrigger>
         </DataTemplate.Triggers>
     </DataTemplate>

@@ -43,8 +43,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.Resources>
                     <Style BasedOn="{StaticResource {x:Type control:IconButton}}" TargetType="control:IconButton">
@@ -61,97 +59,6 @@
                     ToolTip="{DynamicResource SpecialServiceInfo}" />
                 <Grid
                     Grid.Column="1"
-                    dd:DragDrop.DropHandler="{StaticResource ImTranDropHandler}"
-                    dd:DragDrop.IsDropTarget="True"
-                    Background="Transparent">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock
-                        Margin="5,0"
-                        VerticalAlignment="Center"
-                        Foreground="{DynamicResource {x:Static ui:ThemeKeys.TextFillColorSecondaryBrushKey}}">
-                        <Run Text="{DynamicResource ImTranService}" />
-                        <Run Text=":" />
-                    </TextBlock>
-                    <ui:ElevationBorder
-                        Grid.Column="1"
-                        MinWidth="100"
-                        MinHeight="30"
-                        Padding="8,2"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Background="{DynamicResource SettingsCardBackground}"
-                        BorderBrush="{DynamicResource ControlElevationBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="5"
-                        FlowDirection="LeftToRight"
-                        Visibility="{Binding Service.ImageTranslateService, Converter={cnvt:EqualToVisibilityInverseConverter}}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Service.ImageTranslateService.IconPath, Converter={cnvt:ImagePathToSourceConverter}}" />
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="5,0"
-                                VerticalAlignment="Center"
-                                FontSize="{DynamicResource STControlFontSize12}"
-                                FontWeight="SemiBold"
-                                Foreground="{DynamicResource {x:Static ui:ThemeKeys.SystemFillColorSuccessBrushKey}}"
-                                Text="{Binding Service.ImageTranslateService.DisplayName}"
-                                TextTrimming="CharacterEllipsis"
-                                ToolTipService.ToolTip="{Binding Service.ImageTranslateService.DisplayName}" />
-                            <control:Badge
-                                Grid.Column="2"
-                                Margin="2,0"
-                                FontSize="{DynamicResource STControlFontSize10}"
-                                IsOfficial="{Binding Service.ImageTranslateService.MetaData.IsPrePlugin}" />
-                        </Grid>
-                    </ui:ElevationBorder>
-                    <ui:ElevationBorder
-                        Grid.Column="1"
-                        MinWidth="100"
-                        MinHeight="30"
-                        Margin="0,0,5,0"
-                        Padding="8,2"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Background="{DynamicResource SettingsCardBackground}"
-                        BorderBrush="{DynamicResource ControlElevationBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="5"
-                        Visibility="{Binding Service.ImageTranslateService, Converter={cnvt:EqualToVisibilityConverter}}">
-                        <TextBlock
-                            Margin="5,0"
-                            VerticalAlignment="Center"
-                            Foreground="{DynamicResource {x:Static ui:ThemeKeys.TextFillColorSecondaryBrushKey}}"
-                            Text="{DynamicResource NoServiceEnabled}" />
-                    </ui:ElevationBorder>
-                    <control:IconButton
-                        Grid.Column="2"
-                        Margin="0,0,5,0"
-                        Command="{Binding DeactiveImTranCommand}"
-                        FontSize="{DynamicResource STControlFontSize8}"
-                        Icon="{x:Static ui:FluentSystemIcons.Delete_20_Regular}"
-                        Visibility="{Binding Service.ImageTranslateService, Converter={cnvt:EqualToVisibilityInverseConverter}}" />
-                </Grid>
-                <Separator
-                    Grid.Column="2"
-                    Width="20"
-                    Height="1"
-                    VerticalAlignment="Center"
-                    RenderTransformOrigin="0.5,0.5">
-                    <Separator.RenderTransform>
-                        <RotateTransform Angle="90" />
-                    </Separator.RenderTransform>
-                </Separator>
-                <Grid
-                    Grid.Column="3"
                     dd:DragDrop.DropHandler="{StaticResource ReplaceDropHandler}"
                     dd:DragDrop.IsDropTarget="True"
                     Background="Transparent">
@@ -251,11 +158,9 @@
                     dd:DragDrop.IsDragSource="True"
                     dd:DragDrop.IsDropTarget="True"
                     dd:DragDrop.UseDefaultDragAdorner="True"
-                    ActiveImTranCommand="{Binding ActiveImTranCommand}"
                     ActiveReplaceCommand="{Binding ActiveReplaceCommand}"
                     DeleteCommand="{Binding DeleteCommand}"
                     DuplicateCommand="{Binding DuplicateCommand}"
-                    ImTranService="{Binding Service.ImageTranslateService}"
                     ItemsSource="{Binding Service.Services}"
                     ReplaceService="{Binding Service.ReplaceService}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"

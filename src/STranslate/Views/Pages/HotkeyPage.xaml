@@ -155,28 +155,6 @@
                             WindowTitle="{DynamicResource Hotkey_ReplaceTranslate}" />
                     </ui:SettingsCard>
 
-                    <ui:SettingsCard Description="{DynamicResource Hotkey_ScreenshotTranslateDescription}" Header="{DynamicResource Hotkey_ScreenshotTranslate}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <control:HotkeyControl
-                            DefaultHotkey="{Binding HotkeySettings.ScreenshotTranslateHotkey.Default}"
-                            Hotkey="{Binding HotkeySettings.ScreenshotTranslateHotkey.Key}"
-                            IsRegistered="{Binding HotkeySettings.ScreenshotTranslateHotkey.IsConflict}"
-                            WindowTitle="{DynamicResource Hotkey_ScreenshotTranslate}" />
-                    </ui:SettingsCard>
-
-                    <ui:SettingsCard Description="{DynamicResource Hotkey_ImageTranslateDescription}" Header="{DynamicResource Hotkey_ImageTranslate}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <control:HotkeyControl
-                            DefaultHotkey="{Binding HotkeySettings.ImageTranslateHotkey.Default}"
-                            Hotkey="{Binding HotkeySettings.ImageTranslateHotkey.Key}"
-                            IsRegistered="{Binding HotkeySettings.ImageTranslateHotkey.IsConflict}"
-                            WindowTitle="{DynamicResource Hotkey_ImageTranslate}" />
-                    </ui:SettingsCard>
-
                     <ui:SettingsCard Description="{DynamicResource Hotkey_MouseSelectionTranslationDescription}" Header="{DynamicResource Hotkey_MouseSelectionTranslation}">
                         <ui:SettingsCard.HeaderIcon>
                             <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.KeyboardMouse_16_Regular}" />
@@ -188,17 +166,6 @@
                             WindowTitle="{DynamicResource Hotkey_MouseSelectionTranslation}" />
                     </ui:SettingsCard>
 
-                    <ui:SettingsCard Description="{DynamicResource Hotkey_SilentOcrDescription}" Header="{DynamicResource Hotkey_SilentOcr}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScanTypeOff_24_Regular}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <control:HotkeyControl
-                            DefaultHotkey="{Binding HotkeySettings.SilentOcrHotkey.Default}"
-                            Hotkey="{Binding HotkeySettings.SilentOcrHotkey.Key}"
-                            IsRegistered="{Binding HotkeySettings.SilentOcrHotkey.IsConflict}"
-                            WindowTitle="{DynamicResource Hotkey_SilentOcr}" />
-                    </ui:SettingsCard>
-
                     <ui:SettingsCard Description="{DynamicResource Hotkey_SilentTtsDescription}" Header="{DynamicResource Hotkey_SilentTts}">
                         <ui:SettingsCard.HeaderIcon>
                             <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.DesktopSpeaker_24_Regular}" />
@@ -208,17 +175,6 @@
                             Hotkey="{Binding HotkeySettings.SilentTtsHotkey.Key}"
                             IsRegistered="{Binding HotkeySettings.SilentTtsHotkey.IsConflict}"
                             WindowTitle="{DynamicResource Hotkey_SilentTts}" />
-                    </ui:SettingsCard>
-
-                    <ui:SettingsCard Description="{DynamicResource Hotkey_OcrDescription}" Header="{DynamicResource Hotkey_Ocr}">
-                        <ui:SettingsCard.HeaderIcon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScanType_24_Regular}" />
-                        </ui:SettingsCard.HeaderIcon>
-                        <control:HotkeyControl
-                            DefaultHotkey="{Binding HotkeySettings.OcrHotkey.Default}"
-                            Hotkey="{Binding HotkeySettings.OcrHotkey.Key}"
-                            IsRegistered="{Binding HotkeySettings.OcrHotkey.IsConflict}"
-                            WindowTitle="{DynamicResource Hotkey_Ocr}" />
                     </ui:SettingsCard>
 
                     <ui:SettingsCard Description="{DynamicResource Hotkey_ClipboardMonitorDescription}" Header="{DynamicResource Hotkey_ClipboardMonitor}">
@@ -330,44 +286,6 @@
                                 Type="MainWindow"
                                 ValidateKeyGesture="False"
                                 WindowTitle="{DynamicResource Hotkey_AutoTranslate}" />
-                        </ui:SettingsCard>
-                    </ui:SettingsExpander.Items>
-                </ui:SettingsExpander>
-
-                <ui:SettingsExpander Header="{DynamicResource Hotkey_OcrImTransWindow}">
-                    <ui:SettingsExpander.Items>
-                        <ui:SettingsCard Header="{DynamicResource Hotkey_ReExecuteOcr}">
-                            <control:HotkeyControl
-                                DefaultHotkey="{Binding HotkeySettings.ReExecuteOcrHotkey.Default}"
-                                Hotkey="{Binding HotkeySettings.ReExecuteOcrHotkey.Key}"
-                                Type="OcrWindow,ImageTransWindow"
-                                ValidateKeyGesture="False"
-                                WindowTitle="{DynamicResource Hotkey_ReExecuteOcr}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Description="{DynamicResource Hotkey_SwitchImageDescription}" Header="{DynamicResource Hotkey_SwitchImage}">
-                            <control:HotkeyControl
-                                DefaultHotkey="{Binding HotkeySettings.SwitchImageHotkey.Default}"
-                                Hotkey="{Binding HotkeySettings.SwitchImageHotkey.Key}"
-                                Type="OcrWindow,ImageTransWindow"
-                                ValidateKeyGesture="False"
-                                WindowTitle="{DynamicResource Hotkey_SwitchImage}" />
-                        </ui:SettingsCard>
-
-                        <ui:SettingsCard Description="{DynamicResource Hotkey_QrCodeDescription}" Header="{DynamicResource Hotkey_QrCode}">
-                            <control:HotkeyControl
-                                DefaultHotkey="{Binding HotkeySettings.QrCodeHotkey.Default}"
-                                Hotkey="{Binding HotkeySettings.QrCodeHotkey.Key}"
-                                Type="OcrWindow"
-                                ValidateKeyGesture="False"
-                                WindowTitle="{DynamicResource Hotkey_QrCode}" />
-                        </ui:SettingsCard>
-                        <ui:SettingsCard Header="{DynamicResource Hotkey_PinImageTranslate}">
-                            <control:HotkeyControl
-                                DefaultHotkey="{Binding HotkeySettings.PinImageTranslateHotkey.Default}"
-                                Hotkey="{Binding HotkeySettings.PinImageTranslateHotkey.Key}"
-                                Type="ImageTransWindow"
-                                WindowTitle="{DynamicResource Hotkey_PinImageTranslate}" />
                         </ui:SettingsCard>
                     </ui:SettingsExpander.Items>
                 </ui:SettingsExpander>

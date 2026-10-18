@@ -33,13 +33,13 @@ public partial class HotkeySettings : ObservableObject, IDisposable
     public GlobalHotkey OpenWindowHotkey { get; set; } = new("Alt + G");
     public GlobalHotkey InputTranslateHotkey { get; set; } = new(Constant.EmptyHotkey);
     public GlobalHotkey CrosswordTranslateHotkey { get; set; } = new("Alt + D");
-    public GlobalHotkey ScreenshotTranslateHotkey { get; set; } = new("Alt + S");
-    public GlobalHotkey ImageTranslateHotkey { get; set; } = new("Alt + Shift + X");
+    public GlobalHotkey ScreenshotTranslateHotkey { get; set; } = new(Constant.EmptyHotkey);
+    public GlobalHotkey ImageTranslateHotkey { get; set; } = new(Constant.EmptyHotkey);
     public GlobalHotkey ReplaceTranslateHotkey { get; set; } = new(Constant.EmptyHotkey);
     public GlobalHotkey MouseSelectionTranslationHotkey { get; set; } = new(Constant.EmptyHotkey);
     public GlobalHotkey SilentOcrHotkey { get; set; } = new(Constant.EmptyHotkey);
     public GlobalHotkey SilentTtsHotkey { get; set; } = new(Constant.EmptyHotkey);
-    public GlobalHotkey OcrHotkey { get; set; } = new("Alt + Shift + S");
+    public GlobalHotkey OcrHotkey { get; set; } = new(Constant.EmptyHotkey);
     public GlobalHotkey ClipboardMonitorHotkey { get; set; } = new(Constant.EmptyHotkey);
 
     #region Software Hotkeys - MainWindow
@@ -193,13 +193,13 @@ public partial class HotkeySettings : ObservableObject, IDisposable
             [nameof(OpenWindowHotkey)] = "Alt + G",
             [nameof(InputTranslateHotkey)] = "Alt + A",
             [nameof(CrosswordTranslateHotkey)] = "Alt + D",
-            [nameof(ScreenshotTranslateHotkey)] = "Alt + S",
-            [nameof(ImageTranslateHotkey)] = "Alt + Shift + X",
+            [nameof(ScreenshotTranslateHotkey)] = Constant.EmptyHotkey,
+            [nameof(ImageTranslateHotkey)] = Constant.EmptyHotkey,
             [nameof(ReplaceTranslateHotkey)] = "Alt + F",
             [nameof(MouseSelectionTranslationHotkey)] = "Alt + Shift + D",
-            [nameof(SilentOcrHotkey)] = "Alt + Shift + F",
+            [nameof(SilentOcrHotkey)] = Constant.EmptyHotkey,
             [nameof(SilentTtsHotkey)] = "Alt + Shift + G",
-            [nameof(OcrHotkey)] = "Alt + Shift + S",
+            [nameof(OcrHotkey)] = Constant.EmptyHotkey,
             [nameof(ClipboardMonitorHotkey)] = "Alt + Shift + A",
             // Software Hotkeys - MainWindow
             [nameof(OpenSettingsHotkey)] = "Ctrl + OemComma",

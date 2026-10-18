@@ -55,7 +55,7 @@ public interface IPluginContext : IDisposable
     /// <param name="prompts"></param>
     /// <param name="roles"></param>
     /// <returns></returns>
-    Window GetPromptEditWindow(ObservableCollection<Prompt> prompts, List<string>? roles = default);
+    Window? GetPromptEditWindow(ObservableCollection<Prompt> prompts, List<string>? roles = default);
 
     /// <summary>
     /// 加载插件的设置存储。

@@ -164,24 +164,6 @@ public class ExternalCallService(
                 case ExternalCallAction.translate_input:
                     viewModel.InputClearCommand.Execute(null);
                     break;
-                case ExternalCallAction.translate_ocr:
-                    if (string.IsNullOrWhiteSpace(content))
-                        await viewModel.ScreenshotTranslateCommand.ExecuteAsync(null);
-                    else
-                    {
-                        using var bitmap = Utilities.ToBitmap(content);
-                        await viewModel.ScreenshotTranslateHandlerAsync(bitmap);
-                    }
-                    break;
-                case ExternalCallAction.translate_ocr_image:
-                    if (string.IsNullOrWhiteSpace(content))
-                        await viewModel.ImageTranslateCommand.ExecuteAsync(null);
-                    else
-                    {
-                        using var bitmap = Utilities.ToBitmap(content);
-                        await viewModel.ImageTranslateHandlerAsync(bitmap);
-                    }
-                    break;
                 case ExternalCallAction.translate_crossword:
                     await viewModel.CrosswordTranslateCommand.ExecuteAsync(null);
                     break;
@@ -196,40 +178,6 @@ public class ExternalCallService(
                             return;
                         }
                         await viewModel.ReplaceTranslateCommand.ExecuteAsync(null);
-                    }
-                    break;
-                case ExternalCallAction.ocr:
-                    if (string.IsNullOrWhiteSpace(content))
-                        await viewModel.OcrCommand.ExecuteAsync(null);
-                    else
-                    {
-                        using var bitmap = Utilities.ToBitmap(content);
-                        await viewModel.OcrHandlerAsync(bitmap);
-                    }
-                    break;
-                case ExternalCallAction.ocr_silence:
-                    if (string.IsNullOrWhiteSpace(content))
-                    {
-                        if (viewModel.SilentOcrCommand.IsRunning)
-                        {
-                            viewModel.SilentOcrCancelCommand.Execute(null);
-                            return;
-                        }
-                        await viewModel.SilentOcrCommand.ExecuteAsync(null);
-                    }
-                    else
-                    {
-                        using var bitmap = Utilities.ToBitmap(content);
-                        await viewModel.SilentOcrHandlerAsync(bitmap);
-                    }
-                    break;
-                case ExternalCallAction.ocr_qrcode:
-                    if (string.IsNullOrWhiteSpace(content))
-                        await viewModel.QrCodeCommand.ExecuteAsync(null);
-                    else
-                    {
-                        using var bitmap = Utilities.ToBitmap(content);
-                        await viewModel.QrCodeHandlerAsync(bitmap);
                     }
                     break;
                 case ExternalCallAction.open_window:

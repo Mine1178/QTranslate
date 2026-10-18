@@ -22,3 +22,13 @@ target/
 
 # superpowers docs
 docs/superpowers/
+
+# build artifacts
+.artifacts/
+*.userprefs
+*.suo
+*.userosscache
+*.sln.docstates
+
+# build logs
+*.log

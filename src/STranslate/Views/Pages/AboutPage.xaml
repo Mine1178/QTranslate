@@ -163,8 +163,8 @@
                 </ui:SettingsCard>
 
                 <ui:SettingsExpander
-                    Description="© 2020 zggsong &amp; STranslate Contributors"
-                    Header="{x:Static core:Constant.AppName}"
+                    Description="Based on STranslate by zggsong (MIT)"
+                    Header="{x:Static core:Constant.DisplayName}"
                     IsExpanded="True">
                     <ui:SettingsExpander.HeaderIcon>
                         <Image
@@ -186,14 +186,8 @@
 
                         <ui:SettingsCard Header="{DynamicResource Version}">
                             <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="4">
-                                <Button Command="{Binding CheckUpdateCommand}">
-                                    <ui:IconAndText Content="{DynamicResource CheckUpdate}" Icon="{x:Static ui:FluentSystemIcons.GlobeArrowUp_20_Regular}" />
-                                </Button>
-                                <Button Command="{Binding OpenWizardCommand}">
-                                    <ui:IconAndText Content="{DynamicResource Wizard}" Icon="{x:Static ui:FluentSystemIcons.PlayMultiple_16_Regular}" />
-                                </Button>
                                 <Button Command="{Binding DonateCommand}" Style="{DynamicResource {x:Static ui:ThemeKeys.AccentButtonStyleKey}}">
-                                    <ui:IconAndText Content="{DynamicResource Donate}" Icon="{x:Static ui:FluentSystemIcons.DrinkCoffee_20_Filled}" />
+                                    <ui:IconAndText Content="☕ 赞助作者" Icon="{x:Static ui:FluentSystemIcons.DrinkCoffee_20_Filled}" />
                                 </Button>
                             </ikw:SimpleStackPanel>
                         </ui:SettingsCard>
@@ -209,6 +203,7 @@
 
                         <ui:SettingsCard Margin="0,0,-10,0" Header="{DynamicResource Thanks}">
                             <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="2">
+                                <ui:HyperlinkButton Content="STranslate" NavigateUri="{x:Static core:Constant.STranslateUri}" />
                                 <ui:HyperlinkButton Content="Flow Launcher" NavigateUri="{x:Static core:Constant.FlowLauncherUri}" />
                                 <ui:HyperlinkButton Content="UI.WPF.Modern" NavigateUri="{x:Static core:Constant.UiWpfMordenUri}" />
                                 <ui:HyperlinkButton Content="Bob" NavigateUri="{x:Static core:Constant.BobUri}" />

@@ -1,93 +1,63 @@
 <div align="center">
 
+<h1 align="center">QTranslate</h1>
+
+<p>一款轻量级 Windows 桌面翻译工具，基于 <a href="https://github.com/STranslate/STranslate">STranslate</a> 二次开发。</p>
+
 <p>
-<a href="https://github.com/STranslate/STranslate" target="_blank">
-<img align="center" alt="STranslate" width="200" src="./images/favicon.svg" />
-</a>
+<img alt="Platform" src="https://img.shields.io/badge/platform-Windows%20x64-blue" />
+<img alt=".NET" src="https://img.shields.io/badge/.NET-10.0-purple" />
+<img alt="License" src="https://img.shields.io/badge/license-MIT-green" />
 </p>
-<p>
-<a href="https://github.com/STranslate/STranslate/blob/main/LICENSE" target="_self">
- <img alt="Latest GitHub release" src="https://img.shields.io/github/license/ZGGSONG/STranslate" />
-</a>
-<a href="https://github.com/STranslate/STranslate/releases/latest" target="_blank">
- <img alt="Latest GitHub release" src="https://img.shields.io/github/release/ZGGSONG/STranslate.svg" />
-</a>
-<a href="https://github.com/STranslate/STranslate/releases" target="_self">
- <img alt="Downloads" src="https://img.shields.io/github/downloads/ZGGSONG/STranslate/total" />
-</a>
-<a href="https://github.com/STranslate/STranslate/discussions" target="_self">
- <img alt="Discussions" src="https://img.shields.io/github/discussions/ZGGSONG/STranslate" />
-</a>
-</p>
-
-<h1 align="center">STranslate 2.0</h1>
-
-**English** | [**简体中文**](./README_ZH.md)
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15843" target="_blank">
-    <img src="https://trendshift.io/api/badge/repositories/15843" alt="STranslate%2FSTranslate | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
-  </a>
-
-  <a href="https://hellogithub.com/repository/STranslate/STranslate" target="_blank">
-    <img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=2af2034bb1e84122aac1d39046be20ec&claim_uid=WnBC6wua27iPR9t&theme=neutral" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" />
-  </a>
-</p>
-
-<p align="center">A <strong>ready-to-go</strong> translation and OCR tool developed with WPF.</p>
 
 </div>
 
-## Access
+## ✨ 特性
 
-| Overseas | Domestic |
-| :--: | :--: |
-| **[Github](https://github.com/STranslate/STranslate)** | **[Gitee](https://gitee.com/zggsong/STranslate)** |
+- **划词翻译**：选中文字自动弹出翻译结果
+- **输入翻译**：手动输入文本翻译
+- **多翻译引擎**：百度、DeepL、Google、OpenAI、微软、有道、Yandex 等
+- **TTS 朗读**：集成 Microsoft Edge TTS
+- **生词本 / 历史记录**：完整的记录与收藏功能
+- **多主题换肤**：支持多种 UI 主题
+- **全局快捷键**：自定义触发快捷键
+- **插件系统**：支持拖拽 `.spkg` 文件安装扩展
+- **备份 / 恢复**：配置一键迁移
 
-## Installation
+## 📦 下载
 
-Download the latest [Release](https://github.com/STranslate/STranslate/releases) version and extract it to use.
+前往 [Releases](https://github.com/your-username/QTranslate/releases) 下载最新版本：
 
-## Usage
+| 版本 | 说明 |
+|---|---|
+| **QTranslate-vX.X.X-setup.exe** | 安装包（推荐） |
+| QTranslate-便携版 | 绿色免安装，需 .NET 10 桌面运行时 |
+| QTranslate-单文件版 | 自带运行时，双击即用 |
 
-[Document](https://stranslate.zggsong.com)
+首次运行若缺少运行时，程序会自动弹窗引导通过 winget 安装。
 
-## Discussion
+## 🛠 从源码构建
 
-If you have questions, please go to [Discussions](https://github.com/STranslate/STranslate/discussions) for discussion.
+前置要求：.NET 10 SDK
 
-> If you want to join the user exchange group, you can scan the QR code below
+```bash
+git clone https://github.com/your-username/QTranslate.git
+cd QTranslate/src
+dotnet build STranslate/STranslate.csproj -c Release
+```
 
-<img src="./images/telegram_group.jpg" Width="160" />
+发布单文件版：
 
-## Support the project
+```bash
+dotnet publish STranslate/STranslate.csproj -c Release -r win-x64 --self-contained \
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true \
+  -p:EnableCompressionInSingleFile=true
+```
 
-<a href="https://jb.gg/OpenSourceSupport"><img src="./images/jb_beam.svg" /></a>
+## 🙏 致谢
 
-## Donations
+本项目基于 [zggsong/STranslate](https://github.com/STranslate/STranslate) 二次开发，感谢原作者的开源贡献。
 
-If you like it, you can buy the author a cup of coffee.
+## 📄 License
 
-> Thank you to those who rewarded me [Sponsor List](Sponsor.md)
-
-| WeChat | Alipay |
-| :--: | :--: |
-|![wehcatpay](./images/wechatpay.jpg) | ![alipay](./images/alipay.jpg) |
-
-## Author & Maintainer
-
-**STranslate**
-
-Copyright © [zggsong](https://github.com/zggsong)
-
-- Original author: [zggsong](https://github.com/zggsong)
-- Organization: [STranslate](https://github.com/STranslate)
-- License: [MIT](./LICENSE)
-
-> [Website](https://stranslate.zggsong.com) [Blog](https://www.zggsong.com)
-
-
-## Star History
-
-[![Star History Chart](https://star-history.dera.page/svg?repos=STranslate/STranslate&type=Date)](https://star-history.dera.page/#STranslate/STranslate&Date)
-
+[MIT](./LICENSE)

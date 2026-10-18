@@ -117,6 +117,7 @@ public partial class SettingsViewModel : ObservableObject, IDisposable
     private void EditPrompt()
     {
         var dialog = _context.GetPromptEditWindow(Main.Prompts);
+        if (dialog == null) return;
 
         if (dialog.ShowDialog() == true)
         {

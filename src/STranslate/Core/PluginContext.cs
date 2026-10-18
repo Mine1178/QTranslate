@@ -28,16 +28,15 @@ public class PluginContext(PluginMetaData metaData, string serviceId) : IPluginC
 
     public ImageQuality ImageQuality => Ioc.Default.GetRequiredService<Settings>().ImageQuality;
 
-    public Window GetPromptEditWindow(ObservableCollection<Prompt> prompts, List<string>? roles = default)
+    public Window? GetPromptEditWindow(ObservableCollection<Prompt> prompts, List<string>? roles = default)
     {
-        var window = new PromptEditWindow(prompts, roles)
-        {
-            Owner = Application.Current.Windows.OfType<SettingsWindow>().FirstOrDefault()
-        };
-
-        ThemeManager.SetRequestedTheme(window, Enum.Parse<ElementTheme>(Ioc.Default.GetRequiredService<Settings>().ColorScheme.ToString()));
-
-        return window;
+        // Prompt 编辑器已随精简版本移除，这里仅提示并返回 null。
+        System.Windows.MessageBox.Show(
+            "Prompt 编辑器功能已移除。",
+            "QTranslate",
+            MessageBoxButton.OK,
+            MessageBoxImage.Information);
+        return null;
     }
 
     public T LoadSettingStorage<T>() where T : new()

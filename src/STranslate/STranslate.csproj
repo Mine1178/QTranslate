@@ -65,6 +65,7 @@
         <Resource Include="Resources\*.ani" />
         <Resource Include="Resources\*.ico" />
         <Resource Include="Resources\*.png" />
+        <Resource Include="Resources\*.jpg" />
     </ItemGroup>
 
     <ItemGroup>

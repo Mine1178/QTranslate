@@ -45,7 +45,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     private bool _isAdjustingWindowPositionForContent;
 
     public TranslateService TranslateService { get; }
-    public OcrService OcrService { get; }
     public TtsService TtsService { get; }
     public VocabularyService VocabularyService { get; }
     public ObservableCollection<ServiceQuickAccessItem> QuickServiceItems { get; } = [];
@@ -73,7 +72,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         ISnackbar snackbar,
         INotification notification,
         TranslateService translateService,
-        OcrService ocrService,
         TtsService ttsService,
         VocabularyService vocabularyService,
         SqlService sqlService,
@@ -95,7 +93,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         _snackbar = snackbar;
         _notification = notification;
         TranslateService = translateService;
-        OcrService = ocrService;
         TtsService = ttsService;
         VocabularyService = vocabularyService;
         _sqlService = sqlService;
@@ -112,7 +109,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         _mouseSelectionIconWindow.TranslateRequested += OnMouseSelectionIconTranslateRequested;
 
         TranslateService.Services.CollectionChanged += OnQuickServiceCollectionChanged;
-        OcrService.Services.CollectionChanged += OnQuickServiceCollectionChanged;
         TtsService.Services.CollectionChanged += OnQuickServiceCollectionChanged;
         VocabularyService.Services.CollectionChanged += OnQuickServiceCollectionChanged;
         RebuildQuickServiceItems();
@@ -129,7 +125,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         if (!UACHelper.IsUserAdministrator())
             return;
 
-        TrayToolTip = $"{Constant.AppName} # {_i18n.GetTranslation("Administrator")}";
+        TrayToolTip = $"{Constant.DisplayName} # {_i18n.GetTranslation("Administrator")}";
     }
 
     #endregion
@@ -145,7 +141,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
         var hasPreviousGroup = false;
         AddQuickServiceGroup(TranslateService.Services, ref hasPreviousGroup);
-        AddQuickServiceGroup(OcrService.Services, ref hasPreviousGroup);
         AddQuickServiceGroup(TtsService.Services, ref hasPreviousGroup);
         AddQuickServiceGroup(VocabularyService.Services, ref hasPreviousGroup);
     }
@@ -197,7 +192,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     public partial ImageSource TrayIcon { get; set; } = BitmapImageLoc.AppIcon;
 
     [ObservableProperty]
-    public partial string TrayToolTip { get; set; } = Constant.AppName;
+    public partial string TrayToolTip { get; set; } = Constant.DisplayName;
 
     [ObservableProperty]
     public partial bool IsIdentifyProcessing { get; set; } = false;
@@ -1169,270 +1164,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
     #endregion
 
-    #region OCR & Screenshot Commands
-
-    [RelayCommand(IncludeCancelCommand = true)]
-    private async Task ScreenshotTranslateAsync(CancellationToken cancellationToken)
-    {
-        var ocrPlugin = GetOcrSvcAndNotify();
-        if (ocrPlugin == null)
-            return;
-
-        using var bitmap = await _screenshot.GetScreenshotAsync();
-        await ScreenshotTranslateHandlerAsync(bitmap, ocrPlugin, cancellationToken);
-    }
-
-    public async Task ScreenshotTranslateHandlerAsync(Bitmap? bitmap, IOcrPlugin? ocrPlugin = default, CancellationToken cancellationToken = default)
-    {
-        if (bitmap == null) return;
-
-        ocrPlugin ??= GetOcrSvcAndNotify();
-        if (ocrPlugin == null)
-            return;
-
-        try
-        {
-            CursorHelper.Execute();
-            var data = Utilities.ToBytes(bitmap, Settings.GetImageFormat());
-            var result = await ocrPlugin.RecognizeAsync(
-                new OcrRequest(data, Settings.ScreenshotOcrLanguage, bitmap.Width, bitmap.Height),
-                cancellationToken);
-            Utilities.PrepareOcrResult(result);
-
-            if (!result.IsSuccess || string.IsNullOrEmpty(result.Text))
-                return;
-
-            if (Settings.CopyAfterOcr)
-                ClipboardHelper.SetText(result.Text);
-
-            _skipShowForNextTranslate = !Settings.FocusInputAfterScreenshotTranslate && IsTopmost;
-            ExecuteTranslate(HandleCapturedText(result.Text, TextSeparatorHandleScope.ScreenshotTranslate));
-        }
-        catch (TaskCanceledException)
-        {
-            //TODO: 考虑提示用户取消操作
-        }
-        catch (Exception ex)
-        {
-            Show();
-            _snackbar.ShowError($"{_i18n.GetTranslation("OcrFailed")}\n{ex.Message}");
-            _logger.LogError(ex, "OCR execution failed");
-        }
-        finally
-        {
-            CursorHelper.Restore();
-        }
-    }
-
-    [RelayCommand]
-    private Task ImageTranslateAsync() => ImageTranslateInternalAsync(hideExistingWindows: true);
-
-    internal async Task ImageTranslateInternalAsync(bool hideExistingWindows)
-    {
-        var ocrPlugin = GetImageTranslateOcrSvcAndNotify();
-        if (ocrPlugin == null)
-            return;
-
-        if (TranslateService.ImageTranslateService == null)
-        {
-            Helper.PromptConfigureService(
-                _i18n.GetTranslation("ImageTranslateServiceNotFoundTitle"),
-                _i18n.GetTranslation("ImageTranslateServiceNotFoundMessage"),
-                nameof(TranslatePage));
-            return;
-        }
-
-        var existingWindows = hideExistingWindows
-            ? Application.Current.Windows
-                .OfType<Window>()
-                .Where(w => w is ImageTranslateWindow or ImageTranslateCompactWindow)
-                .ToList()
-            : [];
-        var ocr = ocrPlugin;
-        await ExecuteWithWindowsHiddenAsync(existingWindows, async () =>
-        {
-            using var captureResult = await _screenshot.GetScreenshotCaptureAsync();
-            await ImageTranslateHandlerAsync(captureResult?.Bitmap, ocr, captureResult?.PhysicalBounds);
-        });
-    }
-
-    public async Task ImageTranslateHandlerAsync(Bitmap? bitmap, IOcrPlugin? ocrPlugin = default, Rectangle? physicalBounds = default)
-    {
-        if (bitmap == null) return;
-
-        ocrPlugin ??= GetImageTranslateOcrSvcAndNotify();
-        if (ocrPlugin == null)
-            return;
-
-        if (Settings.ImageTranslateWindowMode == ImageTranslateWindowMode.Compact)
-        {
-            Task? executeTask = null;
-            await SingletonWindowOpener.OpenPreparedAsync<ImageTranslateCompactWindow>(window =>
-            {
-                window.PlaceForCapture(physicalBounds, bitmap.Size);
-                executeTask = ((ImageTranslateWindowViewModel)window.DataContext).ExecuteCommand.ExecuteAsync(bitmap);
-            });
-
-            if (executeTask != null)
-                await executeTask;
-            return;
-        }
-
-        var standaloneWindow = await SingletonWindowOpener.OpenAsync<ImageTranslateWindow>();
-        await ((ImageTranslateWindowViewModel)standaloneWindow.DataContext).ExecuteCommand.ExecuteAsync(bitmap);
-    }
-
-    [RelayCommand]
-    private Task OcrAsync() => OcrInternalAsync(hideExistingWindow: true);
-
-    internal async Task OcrInternalAsync(bool hideExistingWindow)
-    {
-        if (GetOcrSvcAndNotify() == null)
-            return;
-
-        var existingWindow = hideExistingWindow
-            ? Application.Current.Windows.OfType<OcrWindow>().FirstOrDefault()
-            : null;
-        await ExecuteWithWindowsHiddenAsync(existingWindow, async () =>
-        {
-            using var bitmap = await _screenshot.GetScreenshotAsync();
-            await OcrHandlerAsync(bitmap);
-        });
-    }
-
-    public async Task OcrHandlerAsync(Bitmap? bitmap)
-    {
-        if (bitmap == null) return;
-        var window = await SingletonWindowOpener.OpenAsync<OcrWindow>();
-        await ((OcrWindowViewModel)window.DataContext).ExecuteCommand.ExecuteAsync(bitmap);
-    }
-
-    [RelayCommand]
-    private async Task QrCodeAsync()
-    {
-        if (GetOcrSvcAndNotify() == null)
-            return;
-
-        var existingWindow = Application.Current.Windows.OfType<OcrWindow>().FirstOrDefault();
-        await ExecuteWithWindowsHiddenAsync(existingWindow, async () =>
-        {
-            using var bitmap = await _screenshot.GetScreenshotAsync();
-            await QrCodeHandlerAsync(bitmap);
-        });
-    }
-
-    public async Task QrCodeHandlerAsync(Bitmap? bitmap)
-    {
-        if (bitmap == null) return;
-        var window = await SingletonWindowOpener.OpenAsync<OcrWindow>();
-        ((OcrWindowViewModel)window.DataContext).QrCode(bitmap);
-    }
-
-    [RelayCommand(IncludeCancelCommand = true)]
-    private async Task SilentOcrAsync(CancellationToken cancellationToken)
-    {
-        var ocrPlugin = GetOcrSvcAndNotify();
-        if (ocrPlugin == null)
-            return;
-
-        using var bitmap = await _screenshot.GetScreenshotAsync();
-        await SilentOcrHandlerAsync(bitmap, ocrPlugin, cancellationToken);
-    }
-
-    public async Task SilentOcrHandlerAsync(Bitmap? bitmap, IOcrPlugin? ocrPlugin = default, CancellationToken cancellationToken = default)
-    {
-        if (bitmap == null) return;
-
-        ocrPlugin ??= GetOcrSvcAndNotify();
-        if (ocrPlugin == null)
-            return;
-        try
-        {
-            CursorHelper.Execute();
-            var data = Utilities.ToBytes(bitmap, Settings.GetImageFormat());
-            var result = await ocrPlugin.RecognizeAsync(
-                new OcrRequest(data, Settings.ScreenshotOcrLanguage, bitmap.Width, bitmap.Height),
-                cancellationToken);
-            Utilities.PrepareOcrResult(result);
-            if (result.IsSuccess && !string.IsNullOrEmpty(result.Text))
-            {
-                ClipboardHelper.SetText(HandleSilentOcrText(result.Text));
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            //TODO: 考虑提示用户取消操作
-        }
-        catch (Exception ex)
-        {
-            Show();
-            _snackbar.ShowError($"{_i18n.GetTranslation("OcrFailed")}\n{ex.Message}");
-            _logger.LogError(ex, "OCR execution failed");
-        }
-        finally
-        {
-            CursorHelper.Restore();
-        }
-    }
-
-    private IOcrPlugin? GetOcrSvcAndNotify()
-    {
-        var svc = OcrService.GetActiveSvc<IOcrPlugin>();
-        if (svc == null)
-        {
-            Helper.PromptConfigureService(
-                _i18n.GetTranslation("OcrServiceNotFoundTitle"),
-                _i18n.GetTranslation("OcrServiceNotFoundMessage"),
-                nameof(OcrPage));
-            return default;
-        }
-
-        return svc;
-    }
-
-    private IOcrPlugin? GetImageTranslateOcrSvcAndNotify()
-    {
-        var svc = OcrService.GetImageTranslateOcrSvcOrDefault();
-        if (svc == null)
-        {
-            Helper.PromptConfigureService(
-                _i18n.GetTranslation("ImageTranslateOcrServiceNotFoundTitle"),
-                _i18n.GetTranslation("ImageTranslateOcrServiceNotFoundMessage"),
-                nameof(OcrPage));
-            return default;
-        }
-
-        return svc;
-    }
-
-    /// <summary>
-    /// 临时隐藏指定窗口，执行操作后恢复显示（无论成功、失败或用户取消截图）。
-    /// 用于截图前隐藏已开的结果窗口，避免其遮挡截图选区；
-    /// 操作结束后由 <see cref="SingletonWindowOpener"/> 复用同一窗口显示新结果，
-    /// 此处 <see cref="Window.Show()"/> 对已可见窗口为空操作，安全。
-    /// </summary>
-    private static Task ExecuteWithWindowsHiddenAsync(Window? window, Func<Task> action)
-        => ExecuteWithWindowsHiddenAsync(window == null ? [] : new[] { window }, action);
-
-    private static async Task ExecuteWithWindowsHiddenAsync(
-        IEnumerable<Window?> windows,
-        Func<Task> action)
-    {
-        var toHide = windows.Where(w => w != null).Cast<Window>().ToList();
-        foreach (var w in toHide)
-            w.Hide();
-        try
-        {
-            await action();
-        }
-        finally
-        {
-            foreach (var w in toHide)
-                w.Show();
-        }
-    }
-
-    #endregion
 
     #region TTS & Audio Commands
 
@@ -2004,12 +1735,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         {
             case DoubleClickTrayFunction.InputTranslate:
                 InputClear();
-                break;
-            case DoubleClickTrayFunction.ScreenshotTranslate:
-                ScreenshotTranslateCommand.Execute(null);
-                break;
-            case DoubleClickTrayFunction.OCR:
-                OcrCommand.Execute(null);
                 break;
             case DoubleClickTrayFunction.OpenSettingsWindow:
                 OpenSettingsCommand.Execute(null);
@@ -2806,17 +2531,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
             Settings.TextSeparatorHandleScopes);
     }
 
-    private string HandleSilentOcrText(string text)
-    {
-        if (Settings.TextSeparatorHandleType == TextSeparatorHandleType.None ||
-            (Settings.TextSeparatorHandleScopes & TextSeparatorHandleScope.SilentOcr) != TextSeparatorHandleScope.SilentOcr)
-        {
-            return text;
-        }
-
-        return HandleCapturedText(text, TextSeparatorHandleScope.SilentOcr);
-    }
-
     private void ResetAllServices(TranslationOperation operation)
     {
         var services = TranslateService.Services.Where(x => x.IsEnabled).ToList();
@@ -2836,7 +2550,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         TranslateCancelCommand.Execute(null);
         PlayAudioCancelCommand.Execute(null);
         PlayAudioUrlCancelCommand.Execute(null);
-        ScreenshotTranslateCancelCommand.Execute(null);
         SaveToVocabularyCancelCommand.Execute(null);
     }
 
@@ -2923,7 +2636,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
             _clipboardMonitor?.OnClipboardTextChanged -= OnClipboardTextChanged;
             Settings.PropertyChanged -= OnSettingsPropertyChanged;
             TranslateService.Services.CollectionChanged -= OnQuickServiceCollectionChanged;
-            OcrService.Services.CollectionChanged -= OnQuickServiceCollectionChanged;
             TtsService.Services.CollectionChanged -= OnQuickServiceCollectionChanged;
             VocabularyService.Services.CollectionChanged -= OnQuickServiceCollectionChanged;
 

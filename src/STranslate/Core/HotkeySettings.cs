@@ -413,15 +413,6 @@ public partial class HotkeySettings : ObservableObject, IDisposable
             case nameof(MouseSelectionTranslationHotkey):
                 RegisterHotkey(MouseSelectionTranslationHotkey, WithFullscreenCheck(() => MainWindowViewModel.ToggleMouseSelectionTranslationCommand.Execute(null)), retryOnConflict);
                 break;
-            case nameof(ScreenshotTranslateHotkey):
-                RegisterHotkey(ScreenshotTranslateHotkey, WithFullscreenCheck(() => MainWindowViewModel.ScreenshotTranslateCommand.Execute(null)), retryOnConflict);
-                break;
-            case nameof(ImageTranslateHotkey):
-                RegisterHotkey(ImageTranslateHotkey, WithFullscreenCheck(() => MainWindowViewModel.ImageTranslateCommand.Execute(null)), retryOnConflict);
-                break;
-            case nameof(OcrHotkey):
-                RegisterHotkey(OcrHotkey, WithFullscreenCheck(() => MainWindowViewModel.OcrCommand.Execute(null)), retryOnConflict);
-                break;
 
             // 静默操作
             case nameof(ReplaceTranslateHotkey):
@@ -434,18 +425,6 @@ public partial class HotkeySettings : ObservableObject, IDisposable
                     }
 
                     MainWindowViewModel.ReplaceTranslateCommand.Execute(null);
-                }), retryOnConflict);
-                break;
-            case nameof(SilentOcrHotkey):
-                RegisterHotkey(SilentOcrHotkey, WithFullscreenCheck(() =>
-                {
-                    if (MainWindowViewModel.SilentOcrCommand.IsRunning)
-                    {
-                        MainWindowViewModel.SilentOcrCancelCommand.Execute(null);
-                        return;
-                    }
-
-                    MainWindowViewModel.SilentOcrCommand.Execute(null);
                 }), retryOnConflict);
                 break;
             case nameof(SilentTtsHotkey):

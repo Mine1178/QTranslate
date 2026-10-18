@@ -39,7 +39,7 @@
     <sys:String x:Key="General_StartMode">Start Mode</sys:String>
     <sys:String x:Key="General_StartModeDescription">"SkipUACAdmin" will create a scheduled task to skip the UAC pop-up.</sys:String>
     <sys:String x:Key="General_HideOnStartup">Hide Window on System Startup</sys:String>
-    <sys:String x:Key="General_HideOnStartupDescription">The search window is hidden in the tray after STranslate starts.</sys:String>
+    <sys:String x:Key="General_HideOnStartupDescription">The search window is hidden in the tray after QTranslate starts.</sys:String>
     <sys:String x:Key="General_HideWhenDeactivated">Auto Hide Window When Loses Focus</sys:String>
     <sys:String x:Key="General_AutoHideAtTopEdge">Auto-hide at Top Edge</sys:String>
     <sys:String x:Key="General_AutoHideAtTopEdgeDescription">Drag the window to the top edge to dock it. Move the pointer away to collapse, and hover over the edge to expand. Docking takes priority over hiding on focus loss.</sys:String>
@@ -175,10 +175,10 @@
     <!--  // Hotkey Page //  -->
     <sys:String x:Key="GlobalHotkeys">Global Hotkeys</sys:String>
     <sys:String x:Key="SoftwareHotkeys">Software Hotkeys</sys:String>
-    <sys:String x:Key="Hotkey_OpenSTranslate">Open STranslate</sys:String>
-    <sys:String x:Key="Hotkey_OpenSTranslateDescription">Shortcut key to show/hide STranslate main interface.</sys:String>
+    <sys:String x:Key="Hotkey_OpenSTranslate">Open QTranslate</sys:String>
+    <sys:String x:Key="Hotkey_OpenSTranslateDescription">Shortcut key to show/hide QTranslate main interface.</sys:String>
     <sys:String x:Key="Hotkey_InputTranslate">Input Translate</sys:String>
-    <sys:String x:Key="Hotkey_InputTranslateDescription">Shortcut key to open STranslate and clear content for input translation.</sys:String>
+    <sys:String x:Key="Hotkey_InputTranslateDescription">Shortcut key to open QTranslate and clear content for input translation.</sys:String>
     <sys:String x:Key="Hotkey_CrosswordTranslate">Crossword Translate</sys:String>
     <sys:String x:Key="Hotkey_CrosswordTranslateDescription">Shortcut key to trigger translation of mouse-selected text.</sys:String>
     <sys:String x:Key="Hotkey_CrosswordTranslateIsUseCtrlSameC">Use Ctrl+C+C for text selection translation?</sys:String>
@@ -380,7 +380,7 @@
     <sys:String x:Key="UserDataLocation">User Data Location</sys:String>
     <sys:String x:Key="UserDataLocationDescription">User settings and installed plugins are saved in the user data folder. This location may vary depending on whether it is in portable mode.</sys:String>
     <sys:String x:Key="OpenDirectory">Open Directory</sys:String>
-    <sys:String x:Key="PortableModeDescription">Switch where STranslate stores user data between the app folder and the roaming profile. Changing this will migrate data and restart the app.</sys:String>
+    <sys:String x:Key="PortableModeDescription">Switch where QTranslate stores user data between the app folder and the roaming profile. Changing this will migrate data and restart the app.</sys:String>
     <sys:String x:Key="PortableModeStatePortable">Portable Mode</sys:String>
     <sys:String x:Key="PortableModeStateRoaming">Roaming Mode</sys:String>
     <sys:String x:Key="EnablePortableMode">Enable Portable Mode</sys:String>
@@ -476,7 +476,7 @@
     <sys:String x:Key="Document">Document</sys:String>
 
     <!--  // Welcome Setup //  -->
-    <sys:String x:Key="WelcomeSetup_Title">Welcome to STranslate</sys:String>
+    <sys:String x:Key="WelcomeSetup_Title">Welcome to QTranslate</sys:String>
     <sys:String x:Key="WelcomeSetup_Subtitle">Quickly configure common services and key hotkeys. You can reopen the wizard later from the About page.</sys:String>
     <sys:String x:Key="WelcomeSetup_WelcomeDescription">Set the language, common services, and key hotkeys before you start. You can skip this for now.</sys:String>
     <sys:String x:Key="WelcomeSetup_LanguageDescription">Choose the interface language. Changes use the existing language setting immediately.</sys:String>
@@ -854,13 +854,13 @@
     <sys:String x:Key="UpdateOpenAboutButton">Go to Update</sys:String>
     <sys:String x:Key="UpdateAvailableTrayMessage">New version {0} found. Click the button to open Settings-About and update.</sys:String>
     <sys:String x:Key="NewVersionFound">New version {0} found. Download?</sys:String>
-    <sys:String x:Key="PortableDataMoveError">STranslate was not able to move your user profile data to the new update version.&#10;Please manually move your profile data folder from {0} to {1}</sys:String>
+    <sys:String x:Key="PortableDataMoveError">QTranslate was not able to move your user profile data to the new update version.&#10;Please manually move your profile data folder from {0} to {1}</sys:String>
     <sys:String x:Key="UpdateReady">Update Ready</sys:String>
     <sys:String x:Key="UpdateFailed">Update Failed</sys:String>
     <sys:String x:Key="UpdateFailedMessage">Failed to update the application. Please check your connection.</sys:String>
     <sys:String x:Key="UpdateChangelogLoading">Loading release notes...</sys:String>
     <sys:String x:Key="UpdateChangelogLoadFailedMarkdown">Failed to load release notes. You can [open the full changelog here]({0}).</sys:String>
-    <sys:String x:Key="NewVersionTips">New version {0} is available, would you like to restart STranslate to use the update?</sys:String>
+    <sys:String x:Key="NewVersionTips">New version {0} is available, would you like to restart QTranslate to use the update?</sys:String>
 
     <!--  // LLM Service Configurations for plugins //  -->
     <sys:String x:Key="Url">API Endpoint</sys:String>

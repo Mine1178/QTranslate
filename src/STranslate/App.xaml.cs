@@ -29,15 +29,12 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
     private static Settings? _settings;
     private readonly HotkeySettings? _hotkeySettings;
     private readonly ServiceSettings? _svcSettings;
-    private readonly bool _shouldShowWelcomeSetup;
 
     private ILogger<App>? _logger;
     private MainWindow? _mainWindow;
     private MainWindowViewModel? _mainWindowViewModel;
     private PluginManager? _pluginManager;
-    private PinnedWindowController? _pinnedWindowController;
     private Notification? _notification;
-    private AutoUpdateCheckerService? _autoUpdateCheckerService;
     private MouseSelectionService? _mouseSelectionService;
     private static bool _disposed;
     private AppShutdownReason _shutdownReason = AppShutdownReason.ExternalOrUnknown;
@@ -71,8 +68,6 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
             var isServiceConfigMissing = !svcStorage.Exists();
             _svcSettings = svcStorage.Load();
             _svcSettings.SetStorage(svcStorage);
-
-            _shouldShowWelcomeSetup = isSettingsConfigMissing && isHotkeyConfigMissing && isServiceConfigMissing;
         }
         catch (Exception e)
         {
@@ -105,7 +100,6 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
                     services.AddSingleton<ServiceManager>();
                     services.AddSingleton<PluginService>();
                     services.AddSingleton<TranslateService>();
-                    services.AddSingleton<OcrService>();
                     services.AddSingleton<TtsService>();
                     services.AddSingleton<VocabularyService>();
                     services.AddSingleton<Internationalization>();
@@ -131,7 +125,6 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
                     services.AddSingleton<IAudioPlayer, AudioPlayer>();
                     services.AddSingleton<IScreenshot, Screenshot>();
                     services.AddSingleton<ISnackbar, Snackbar>();
-                    services.AddSingleton<PinnedWindowController>();
 
                     services.AddSingleton<BackupService>();
 
@@ -141,16 +134,11 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
                     // 注册ViewModels
                     services.AddSingleton<MainWindowViewModel>();
                     services.AddTransient<SettingsWindowViewModel>();
-                    services.AddTransient<WelcomeSetupViewModel>();
-                    services.AddTransient<OcrWindowViewModel>();
-                    services.AddTransient<ImageTranslateWindowViewModel>();
 
                     // 自动注册页面
                     services.AddScopedFromNamespace("STranslate.ViewModels.Pages", Assembly.GetExecutingAssembly());
                     services.AddScopedFromNamespace("STranslate.Views.Pages", Assembly.GetExecutingAssembly());
 
-                    services.AddSingleton<UpdaterService>();
-                    services.AddSingleton<AutoUpdateCheckerService>();
                     services.AddSingleton<ExternalCallService>();
                     services.AddSingleton<SqlService>();
                 })
@@ -211,14 +199,14 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
         _pluginManager = Ioc.Default.GetRequiredService<PluginManager>();
         _pluginManager.LoadPlugins();
         Ioc.Default.GetRequiredService<ServiceManager>().LoadServices();
-        _pinnedWindowController = Ioc.Default.GetRequiredService<PinnedWindowController>();
         Ioc.Default.GetRequiredService<SqlService>().InitializeDB();
 
         RegisterAppDomainExceptions();
         RegisterDispatcherUnhandledException();
         RegisterTaskSchedulerUnhandledException();
 
-        ShowWelcomeSetupIfNeeded();
+        // 首次启动直接初始化语言并进入主界面（不再走欢迎向导）
+        Ioc.Default.GetRequiredService<Internationalization>().InitializeLanguage(_settings.NonNull().Language);
         InitializeMainWindow();
         RegisterExitEvents();
 
@@ -229,18 +217,16 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
     {
         _mouseSelectionService = Ioc.Default.GetRequiredService<MouseSelectionService>();
         _mainWindowViewModel = Ioc.Default.GetRequiredService<MainWindowViewModel>();
-        _autoUpdateCheckerService = Ioc.Default.GetRequiredService<AutoUpdateCheckerService>();
         _mainWindow = new MainWindow();
         Current.MainWindow = _mainWindow;
-        Current.MainWindow.Title = Constant.AppName;
+        Current.MainWindow.Title = Constant.DisplayName;
         _mainWindow.Loaded += (s, e) =>
         {
-            _settings?.LazyInitialize(initializeLanguage: !_shouldShowWelcomeSetup);
+            _settings?.LazyInitialize(initializeLanguage: true);
             _hotkeySettings?.LazyInitialize();
             UpdateToolTip();
             CheckAndShowInfo();
             WebDavBackupOperation();
-            _autoUpdateCheckerService?.Start();
         };
     }
 
@@ -309,32 +295,6 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
                 File.Delete(DataLocation.BackupFilePath);
             }
             catch { }
-        }
-    }
-
-    private void ShowWelcomeSetupIfNeeded()
-    {
-        if (!_shouldShowWelcomeSetup)
-            return;
-
-        Ioc.Default.GetRequiredService<Internationalization>()
-            .InitializeLanguage(_settings.NonNull().Language);
-
-        AppRuntimeState.BeginInitialSetup();
-        try
-        {
-            var welcomeWindow = new WelcomeSetupWindow();
-            ThemeManager.SetRequestedTheme(welcomeWindow, _settings.NonNull().ColorScheme);
-            welcomeWindow.ContentRendered += (_, _) =>
-            {
-                Win32Helper.ActivateForegroundWindow(welcomeWindow);
-                welcomeWindow.Activate();
-            };
-            welcomeWindow.ShowDialog();
-        }
-        finally
-        {
-            AppRuntimeState.EndInitialSetup();
         }
     }
 
@@ -515,14 +475,6 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
 
     public void OnSecondAppStarted()
     {
-        var welcomeWindow = Current.Windows.OfType<WelcomeSetupWindow>().FirstOrDefault();
-        if (welcomeWindow != null)
-        {
-            Win32Helper.ActivateForegroundWindow(welcomeWindow);
-            welcomeWindow.Activate();
-            return;
-        }
-
         _mainWindowViewModel?.Show();
     }
 
@@ -550,10 +502,8 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
         {
             // Dispose needs to be called on the main Windows thread,
             // since some resources owned by the thread need to be disposed.
-            _autoUpdateCheckerService?.Dispose();
             _hotkeySettings?.Dispose();
             _notification?.Uninstall();
-            _pinnedWindowController?.CloseAll();
             _mainWindowViewModel?.Dispose();
             _mouseSelectionService?.Dispose();
             _mainWindow?.Dispatcher.Invoke(_mainWindow.Dispose);

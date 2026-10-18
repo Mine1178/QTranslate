@@ -12,7 +12,6 @@
         <ResourceDictionary Source="pack://application:,,,/STranslate;component/Controls/OutputControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/STranslate;component/Controls/ServicePanel.xaml" />
         <ResourceDictionary Source="pack://application:,,,/STranslate;component/Controls/WordExchange.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/STranslate;component/Controls/ImageZoom.xaml" />
         <ResourceDictionary Source="pack://application:,,,/STranslate;component/Controls/STranslateBadge.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

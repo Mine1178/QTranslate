@@ -98,14 +98,12 @@ public partial class SettingsWindow
         {
             nameof(GeneralPage) => sp.GetRequiredService<GeneralPage>(),
             nameof(TranslatePage) => sp.GetRequiredService<TranslatePage>(),
-            nameof(OcrPage) => sp.GetRequiredService<OcrPage>(),
             nameof(TtsPage) => sp.GetRequiredService<TtsPage>(),
             nameof(VocabularyPage) => sp.GetRequiredService<VocabularyPage>(),
             nameof(StandalonePage) => sp.GetRequiredService<StandalonePage>(),
             nameof(HistoryPage) => sp.GetRequiredService<HistoryPage>(),
             nameof(PluginPage) => sp.GetRequiredService<PluginPage>(),
             nameof(HotkeyPage) => sp.GetRequiredService<HotkeyPage>(),
-            nameof(NetworkPage) => sp.GetRequiredService<NetworkPage>(),
             nameof(AboutPage) => sp.GetRequiredService<AboutPage>(),
             _ => default(iNKORE.UI.WPF.Modern.Controls.Page)
         };
@@ -120,14 +118,11 @@ public partial class SettingsWindow
                 case nameof(TranslatePage):
                     RootNavigation.SelectedItem = (RootNavigation.MenuItems[1] as NavigationViewItem)?.MenuItems[0];
                     break;
-                case nameof(OcrPage):
+                case nameof(TtsPage):
                     RootNavigation.SelectedItem = (RootNavigation.MenuItems[1] as NavigationViewItem)?.MenuItems[1];
                     break;
-                case nameof(TtsPage):
-                    RootNavigation.SelectedItem = (RootNavigation.MenuItems[1] as NavigationViewItem)?.MenuItems[2];
-                    break;
                 case nameof(VocabularyPage):
-                    RootNavigation.SelectedItem = (RootNavigation.MenuItems[1] as NavigationViewItem)?.MenuItems[3];
+                    RootNavigation.SelectedItem = (RootNavigation.MenuItems[1] as NavigationViewItem)?.MenuItems[2];
                     break;
                 case nameof(StandalonePage):
                     RootNavigation.SelectedItem = RootNavigation.MenuItems[2];
@@ -188,9 +183,6 @@ public partial class SettingsWindow
                 FocusAndSelectAll(page.ViewModel.IsMarketView ? page.MarketFilterTextbox : page.PluginFilterTextbox);
                 break;
             case HotkeyPage page:
-                FocusAndSelectAll(page.PART_AutoSuggestBox);
-                break;
-            case NetworkPage page:
                 FocusAndSelectAll(page.PART_AutoSuggestBox);
                 break;
         }

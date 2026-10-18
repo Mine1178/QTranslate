@@ -14,7 +14,7 @@
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     xmlns:vm="clr-namespace:STranslate.ViewModels"
     Name="STWindow"
-    Title="STranslate"
+    Title="QTranslate"
     Width="{Binding Settings.MainWindowWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     MinWidth="400"
     MinHeight="200"
@@ -320,39 +320,6 @@
                         </MenuItem.Header>
                         <MenuItem.Icon>
                             <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.WindowAd_20_Regular}" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-
-                    <MenuItem
-                        Command="{Binding Source={StaticResource ViewModel}, Path=Data.ScreenshotTranslateCommand}"
-                        Header="{DynamicResource Hotkey_ScreenshotTranslate}"
-                        Visibility="{Binding Source={StaticResource ViewModel}, Path=Data.Settings.ShowScreenshotItemInNotifyIconMenu, Converter={cnvt:BoolToVisibilityConverter}}">
-                        <MenuItem.Icon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScreenCut_20_Regular}" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem
-                        Command="{Binding Source={StaticResource ViewModel}, Path=Data.ImageTranslateCommand}"
-                        Header="{DynamicResource ImageTranslate}"
-                        Visibility="{Binding Source={StaticResource ViewModel}, Path=Data.Settings.ShowImageTranslateItemInNotifyIconMenu, Converter={cnvt:BoolToVisibilityConverter}}">
-                        <MenuItem.Icon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.DrawImage_20_Regular}" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem
-                        Command="{Binding Source={StaticResource ViewModel}, Path=Data.OcrCommand}"
-                        Header="{DynamicResource Ocr}"
-                        Visibility="{Binding Source={StaticResource ViewModel}, Path=Data.Settings.ShowOcrItemInNotifyIconMenu, Converter={cnvt:BoolToVisibilityConverter}}">
-                        <MenuItem.Icon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ScanType_20_Regular}" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem
-                        Command="{Binding Source={StaticResource ViewModel}, Path=Data.QrCodeCommand}"
-                        Header="{DynamicResource QrCode}"
-                        Visibility="{Binding Source={StaticResource ViewModel}, Path=Data.Settings.ShowQrCodeItemInNotifyIconMenu, Converter={cnvt:BoolToVisibilityConverter}}">
-                        <MenuItem.Icon>
-                            <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.QrCode_20_Regular}" />
                         </MenuItem.Icon>
                     </MenuItem>
 

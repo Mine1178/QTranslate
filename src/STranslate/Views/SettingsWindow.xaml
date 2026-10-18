@@ -87,7 +87,7 @@
                         Grid.Row="1"
                         Margin="0,12,0,0"
                         VerticalAlignment="Center"
-                        Text="STranslate"
+                        Text="QTranslate"
                         TextAlignment="Center" />
                 </Grid>
             </ui:NavigationView.PaneCustomContent>
@@ -107,11 +107,6 @@
                         <ui:NavigationViewItem Content="{DynamicResource Translate}" Tag="TranslatePage">
                             <ui:NavigationViewItem.Icon>
                                 <ui:BitmapIcon ShowAsMonochrome="False" UriSource="/Resources/translate.png" />
-                            </ui:NavigationViewItem.Icon>
-                        </ui:NavigationViewItem>
-                        <ui:NavigationViewItem Content="{DynamicResource Ocr}" Tag="OcrPage">
-                            <ui:NavigationViewItem.Icon>
-                                <ui:BitmapIcon ShowAsMonochrome="False" UriSource="/Resources/ocr.png" />
                             </ui:NavigationViewItem.Icon>
                         </ui:NavigationViewItem>
                         <ui:NavigationViewItem Content="{DynamicResource Tts}" Tag="TtsPage">
@@ -148,12 +143,6 @@
                 <ui:NavigationViewItem Content="{DynamicResource Hotkeys}" Tag="HotkeyPage">
                     <ui:NavigationViewItem.Icon>
                         <ui:BitmapIcon ShowAsMonochrome="False" UriSource="/Resources/keyboard.png" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-
-                <ui:NavigationViewItem Content="{DynamicResource Network}" Tag="NetworkPage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:BitmapIcon ShowAsMonochrome="False" UriSource="/Resources/network.png" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 

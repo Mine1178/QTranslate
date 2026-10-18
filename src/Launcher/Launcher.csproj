@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <PublishAOT>true</PublishAOT>
+        <DisableWinFormsSupport>true</DisableWinFormsSupport>
+        <AssemblyName>QTranslate</AssemblyName>
+        <Product>QTranslate</Product>
+        <Company>QTranslate</Company>
+        <Version>1.0.1.0</Version>
+    </PropertyGroup>
+
+</Project>

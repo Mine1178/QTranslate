@@ -19,7 +19,6 @@ public partial class AboutViewModel(
     INotification notification,
     ISnackbar snackbar,
     Internationalization i18n,
-    UpdaterService updaterService,
     BackupService backupService) : ObservableObject
 {
     private const int PortableModeOperationDelaySeconds = 3;
@@ -30,28 +29,13 @@ public partial class AboutViewModel(
     public string Version => Constant.Version switch
     {
         "1.0.0" => Constant.Dev,
-        _ => Constant.Version
+        _ => $"V{Constant.Version}"
     };
 
     #region ICommand
 
     [RelayCommand]
-    private async Task CheckUpdateAsync()
-    {
-        if (Version == Constant.Dev)
-        {
-            snackbar.ShowWarning(i18n.GetTranslation("NoCheckUpdataInDev"));
-            return;
-        }
-        await updaterService.UpdateAppAsync();
-    }
-
-    [RelayCommand]
-    private void Donate() => Process.Start(new ProcessStartInfo(Constant.Sponsor) { UseShellExecute = true });
-
-    [RelayCommand]
-    private async Task OpenWizardAsync()
-        => await SingletonWindowOpener.OpenAsync<WelcomeSetupWindow>();
+    private void Donate() => new SponsorWindow().ShowDialog();
 
     [RelayCommand]
     private void LocateUserData() => Locate(Path.GetDirectoryName(Path.Combine(DataLocation.SettingsDirectory)));

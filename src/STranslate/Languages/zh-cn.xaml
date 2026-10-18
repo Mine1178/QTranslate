@@ -39,7 +39,7 @@
     <sys:String x:Key="General_StartMode">启动模式</sys:String>
     <sys:String x:Key="General_StartModeDescription">「跳过UAC管理员启动」将创建一个计划任务来跳过UAC弹出窗口。</sys:String>
     <sys:String x:Key="General_HideOnStartup">系统启动时不显示主窗口</sys:String>
-    <sys:String x:Key="General_HideOnStartupDescription">STranslate 启动后搜索窗口隐藏在托盘中。</sys:String>
+    <sys:String x:Key="General_HideOnStartupDescription">QTranslate 启动后搜索窗口隐藏在托盘中。</sys:String>
     <sys:String x:Key="General_HideWhenDeactivated">失去焦点时自动隐藏主窗口</sys:String>
     <sys:String x:Key="General_AutoHideAtTopEdge">贴顶自动收起</sys:String>
     <sys:String x:Key="General_AutoHideAtTopEdgeDescription">将窗口拖到屏幕顶部，鼠标移开后自动收起，移到顶部感应条展开。贴顶时优先于失焦隐藏。</sys:String>
@@ -175,10 +175,10 @@
     <!--  // Hotkey Page //  -->
     <sys:String x:Key="GlobalHotkeys">全局热键</sys:String>
     <sys:String x:Key="SoftwareHotkeys">软件热键</sys:String>
-    <sys:String x:Key="Hotkey_OpenSTranslate">打开STranslate</sys:String>
-    <sys:String x:Key="Hotkey_OpenSTranslateDescription">显示/隐藏STranslate主界面的快捷键。</sys:String>
+    <sys:String x:Key="Hotkey_OpenSTranslate">打开QTranslate</sys:String>
+    <sys:String x:Key="Hotkey_OpenSTranslateDescription">显示/隐藏QTranslate主界面的快捷键。</sys:String>
     <sys:String x:Key="Hotkey_InputTranslate">输入翻译</sys:String>
-    <sys:String x:Key="Hotkey_InputTranslateDescription">打开STranslate并清空内容等待输入翻译的快捷键。</sys:String>
+    <sys:String x:Key="Hotkey_InputTranslateDescription">打开QTranslate并清空内容等待输入翻译的快捷键。</sys:String>
     <sys:String x:Key="Hotkey_CrosswordTranslate">划词翻译</sys:String>
     <sys:String x:Key="Hotkey_CrosswordTranslateDescription">鼠标选中文本触发翻译的快捷键。</sys:String>
     <sys:String x:Key="Hotkey_CrosswordTranslateIsUseCtrlSameC">是否使用 Ctrl+C+C 进行划词翻译？</sys:String>
@@ -476,7 +476,7 @@
     <sys:String x:Key="Document">文档</sys:String>
 
     <!--  // Welcome Setup //  -->
-    <sys:String x:Key="WelcomeSetup_Title">欢迎使用 STranslate</sys:String>
+    <sys:String x:Key="WelcomeSetup_Title">欢迎使用 QTranslate</sys:String>
     <sys:String x:Key="WelcomeSetup_Subtitle">快速配置常用服务和关键快捷键，之后也可以在「关于」页面重新打开向导。</sys:String>
     <sys:String x:Key="WelcomeSetup_WelcomeDescription">第一次启动时可以先设置语言、常用服务和关键快捷键；如果暂时不想配置，也可以跳过。</sys:String>
     <sys:String x:Key="WelcomeSetup_LanguageDescription">选择界面语言，更改会按现有设置立即生效。</sys:String>
@@ -855,13 +855,13 @@
     <sys:String x:Key="UpdateOpenAboutButton">前往更新</sys:String>
     <sys:String x:Key="UpdateAvailableTrayMessage">发现新版本 {0}，点击按钮可前往 设置-关于 页面更新。</sys:String>
     <sys:String x:Key="NewVersionFound">发现新版本 {0}。是否下载？</sys:String>
-    <sys:String x:Key="PortableDataMoveError">STranslate 无法将您的用户配置数据移动到新更新版本。&#10;请手动将您的配置数据文件夹从 {0} 移动到 {1}</sys:String>
+    <sys:String x:Key="PortableDataMoveError">QTranslate 无法将您的用户配置数据移动到新更新版本。&#10;请手动将您的配置数据文件夹从 {0} 移动到 {1}</sys:String>
     <sys:String x:Key="UpdateReady">更新准备就绪</sys:String>
     <sys:String x:Key="UpdateFailed">更新失败</sys:String>
     <sys:String x:Key="UpdateFailedMessage">应用程序更新失败。请检查您的网络连接。</sys:String>
     <sys:String x:Key="UpdateChangelogLoading">正在加载更新内容...</sys:String>
     <sys:String x:Key="UpdateChangelogLoadFailedMarkdown">更新内容加载失败。你可以[点击这里查看完整更新日志]({0})。</sys:String>
-    <sys:String x:Key="NewVersionTips">新版本 {0} 已可用，是否重新启动 STranslate 以使用更新？</sys:String>
+    <sys:String x:Key="NewVersionTips">新版本 {0} 已可用，是否重新启动 QTranslate 以使用更新？</sys:String>
 
     <!--  // LLM Service Configurations for plugins //  -->
     <sys:String x:Key="Url">接口</sys:String>

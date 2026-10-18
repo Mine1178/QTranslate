@@ -7,7 +7,7 @@
     Height="460"
     MinWidth="560"
     MinHeight="420"
-    Icon="/Resources/app.ico"
+    Icon="/Resources/app.png"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"

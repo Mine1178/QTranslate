@@ -170,7 +170,7 @@
                         <Image
                             Width="20"
                             Height="20"
-                            Source="/Resources/app.ico" />
+                            Source="/Resources/app.png" />
                     </ui:SettingsExpander.HeaderIcon>
                     <TextBox
                         Width="Auto"

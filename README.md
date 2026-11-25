@@ -16,6 +16,8 @@
   划词即译 · 秒速启动 · 常驻托盘 · 多引擎聚合 · TTS 朗读 · 生词本
 </p>
 
+<p align="center"><a href="README.en.md">English</a> | 简体中文</p>
+
 </div>
 
 ---
